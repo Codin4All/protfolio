@@ -1,0 +1,24 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Portfolio - Web Server Preview",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "deviceId": "web-server",
+      "noDebug": true,
+      "toolArgs": [
+        "--web-hostname=127.0.0.1",
+        "--web-port=7357"
+      ]
+    },
+    {
+      "name": "Portfolio - Chrome",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "deviceId": "chrome"
+    }
+  ]
+}
