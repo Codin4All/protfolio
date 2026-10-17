@@ -52,9 +52,8 @@ class FormSubmissionService {
     }
 
     final providerMessage = result?['message']?.toString().trim();
-    final errorMessage = providerMessage?.isNotEmpty == true
-        ? providerMessage
-        : null;
+    final errorMessage =
+        providerMessage?.isNotEmpty == true ? providerMessage : null;
 
     if (response.statusCode < 200 || response.statusCode >= 300) {
       throw FormSubmissionException(

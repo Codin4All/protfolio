@@ -1,0 +1,26 @@
+import 'package:flutter/material.dart';
+import '../models/project_model.dart';
+import '../theme/app_theme.dart';
+import '../widgets/gradient_button.dart';
+import '../widgets/social_links.dart';
+
+part 'project_details/screen.dart';
+part 'project_details/page_top_bar.dart';
+part 'project_details/hero.dart';
+part 'project_details/product_crud_details.dart';
+part 'project_details/notification_flow.dart';
+part 'project_details/foreground_message_card.dart';
+part 'project_details/overview.dart';
+part 'project_details/task_manager_details.dart';
+part 'project_details/basic_requirement_panels.dart';
+part 'project_details/notification_requirement_panels.dart';
+part 'project_details/result_requirement_panels.dart';
+part 'project_details/sidebar.dart';
+part 'project_details/detail_panels.dart';
+part 'project_details/notification_requirements.dart';
+part 'project_details/result_widgets.dart';
+part 'project_details/reviews_section.dart';
+part 'project_details/rating_widgets.dart';
+part 'project_details/review_cards.dart';
+part 'project_details/review_dialog.dart';
+part 'project_details/grid_painter.dart';
