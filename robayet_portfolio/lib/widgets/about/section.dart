@@ -2,7 +2,13 @@ part of '../about_section.dart';
 
 class AboutSection extends StatelessWidget {
   final VoidCallback onContact;
-  const AboutSection({super.key, required this.onContact});
+  final GlobalKey educationKey;
+
+  const AboutSection({
+    super.key,
+    required this.onContact,
+    required this.educationKey,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +52,10 @@ class AboutSection extends StatelessWidget {
                   );
           }),
           const SizedBox(height: 68),
-          const SectionReveal(child: _EducationHeading()),
+          KeyedSubtree(
+            key: educationKey,
+            child: const SectionReveal(child: _EducationHeading()),
+          ),
           const SizedBox(height: 27),
           for (var index = 0; index < _educationEntries.length; index++) ...[
             SectionReveal(

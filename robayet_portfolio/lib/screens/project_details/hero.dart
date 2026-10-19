@@ -15,7 +15,7 @@ class _ProjectHero extends StatelessWidget {
           runSpacing: 8,
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
-            _MetaBadge(
+            const _MetaBadge(
               label: 'MOBILE APP',
               color: AppColors.accent,
             ),
@@ -23,8 +23,8 @@ class _ProjectHero extends StatelessWidget {
               label: project.featured
                   ? 'FEATURED PROJECT'
                   : project.detailsKind == ProjectDetailsKind.productCrud
-                  ? 'PRODUCT CRUD'
-                  : 'TASK MANAGEMENT',
+                      ? 'PRODUCT CRUD'
+                      : 'TASK MANAGEMENT',
               color: project.featured
                   ? const Color(0xFFC47BFF)
                   : AppColors.success,
@@ -59,8 +59,8 @@ class _ProjectHero extends StatelessWidget {
             project.detailsKind == ProjectDetailsKind.taskManager
                 ? 'A mobile task manager assignment covering account access, profile management, task workflows, and API-backed CRUD.'
                 : project.detailsKind == ProjectDetailsKind.productCrud
-                ? 'A Flutter product inventory app with live REST API data, validated create and edit forms, automatic total pricing, and reliable delete and refresh flows.'
-                : 'A Flutter task manager assignment covering Firebase Authentication, Firestore task management, FCM push notifications, and local notifications.',
+                    ? 'A Flutter product inventory app with live REST API data, validated create and edit forms, automatic total pricing, and reliable delete and refresh flows.'
+                    : 'A Flutter task manager assignment covering Firebase Authentication, Firestore task management, FCM push notifications, and local notifications.',
             style: TextStyle(
               color: AppColors.muted,
               fontSize: mobile ? 15 : 18,

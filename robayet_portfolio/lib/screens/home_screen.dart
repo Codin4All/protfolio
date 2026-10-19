@@ -4,7 +4,6 @@ import '../widgets/about_section.dart';
 import '../widgets/certificates_section.dart';
 import '../widgets/contact_section.dart';
 import '../widgets/development_process_section.dart';
-import '../widgets/education_section.dart';
 import '../widgets/footer.dart';
 import '../widgets/hero_section.dart';
 import '../widgets/navbar.dart';
@@ -20,14 +19,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // The Process section sits between Skills and Projects without a nav link.
-  static const _navSectionIndexes = [0, 1, 2, 4, 5, 6, 7];
-  final _keys = List.generate(navItems.length + 1, (_) => GlobalKey());
+  // Process has no nav link; Education points to the history inside About.
+  static const _navSectionIndexes = [0, 1, 2, 4, 5, 6];
+  final _keys = List.generate(navItems.length, (_) => GlobalKey());
+  final _educationKey = GlobalKey();
   final _scrollController = ScrollController();
 
   void _scrollTo(int navIndex) {
-    if (navIndex < 0 || navIndex >= _navSectionIndexes.length) return;
-    final ctx = _keys[_navSectionIndexes[navIndex]].currentContext;
+    if (navIndex < 0 || navIndex >= navItems.length) return;
+    final ctx = navIndex == 4
+        ? _educationKey.currentContext
+        : _keys[_navSectionIndexes[navIndex > 4 ? navIndex - 1 : navIndex]]
+            .currentContext;
     if (ctx == null) return;
     Scrollable.ensureVisible(ctx,
         duration: const Duration(milliseconds: 600),
@@ -45,11 +48,13 @@ class _HomeScreenState extends State<HomeScreen> {
     final sections = <Widget>[
       HeroSection(
           onProjects: () => _scrollTo(3), onContact: () => _scrollTo(6)),
-      AboutSection(onContact: () => _scrollTo(6)),
+      AboutSection(
+        onContact: () => _scrollTo(6),
+        educationKey: _educationKey,
+      ),
       const SkillsSection(),
       const DevelopmentProcessSection(),
       const ProjectsSection(),
-      const EducationSection(),
       const CertificatesSection(),
       const ContactSection(),
     ];

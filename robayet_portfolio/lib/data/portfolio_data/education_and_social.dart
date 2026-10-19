@@ -1,9 +1,5 @@
 part of '../portfolio_data.dart';
 
-const degree = 'B.Sc. in Computer Science & Engineering';
-const university = 'Bangladesh University of Business and Technology (BUBT)';
-const universityLocation = 'Dhaka, Bangladesh';
-
 class SocialLink {
   final String label;
   final String url;
