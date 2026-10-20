@@ -6,88 +6,110 @@ class _ProjectPreview extends StatelessWidget {
   const _ProjectPreview({required this.project});
 
   @override
-  Widget build(BuildContext context) => Stack(
-        fit: StackFit.expand,
-        children: [
-          const DecoratedBox(
+  Widget build(BuildContext context) {
+    if (project.image.isNotEmpty) {
+      return LayoutBuilder(
+        builder: (context, constraints) {
+          final previewAspectRatio =
+              constraints.maxWidth / constraints.maxHeight;
+          final imageAspectRatio = project.imageAspectRatio;
+          final fit = imageAspectRatio != null &&
+                  imageAspectRatio < previewAspectRatio
+              ? BoxFit.contain
+              : BoxFit.cover;
+
+          return Image.asset(
+            project.image,
+            fit: fit,
+            alignment: Alignment.center,
+          );
+        },
+      );
+    }
+
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        const DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(0xFF17233D),
+                Color(0xFF101421),
+                Color(0xFF080B14),
+              ],
+            ),
+          ),
+        ),
+        Positioned(
+          top: -50,
+          right: -20,
+          child: Container(
+            width: 150,
+            height: 125,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color(0xFF17233D),
-                  Color(0xFF101421),
-                  Color(0xFF080B14),
-                ],
-              ),
+              shape: BoxShape.circle,
+              color: AppColors.accent.withValues(alpha: 0.11),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.accent.withValues(alpha: 0.2),
+                  blurRadius: 52,
+                  spreadRadius: 10,
+                ),
+              ],
             ),
           ),
-          Positioned(
-            top: -50,
-            right: -20,
-            child: Container(
-              width: 150,
-              height: 125,
+        ),
+        Positioned.fill(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(13, 45, 13, 11),
+            child: project.detailsKind == ProjectDetailsKind.productCrud
+                ? const _ProductCrudPreview()
+                : _TaskManagerPreview(project: project),
+          ),
+        ),
+        Positioned.fill(
+          child: IgnorePointer(
+            child: DecoratedBox(
               decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.accent.withValues(alpha: 0.11),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.accent.withValues(alpha: 0.2),
-                    blurRadius: 52,
-                    spreadRadius: 10,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Positioned.fill(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(13, 45, 13, 11),
-              child: project.detailsKind == ProjectDetailsKind.productCrud
-                  ? const _ProductCrudPreview()
-                  : _TaskManagerPreview(project: project),
-            ),
-          ),
-          Positioned.fill(
-            child: IgnorePointer(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.black.withValues(alpha: 0.1),
-                      Colors.transparent,
-                      Colors.black.withValues(alpha: 0.36),
-                    ],
-                    stops: const [0, 0.48, 1],
-                  ),
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.black.withValues(alpha: 0.1),
+                    Colors.transparent,
+                    Colors.black.withValues(alpha: 0.36),
+                  ],
+                  stops: const [0, 0.48, 1],
                 ),
               ),
             ),
           ),
-          const Positioned(
-            top: 12,
-            left: 13,
-            child: _PreviewBadge(
-              label: 'Flutter App',
-              icon: Icons.phone_android_rounded,
-            ),
+        ),
+        const Positioned(
+          top: 12,
+          left: 13,
+          child: _PreviewBadge(
+            label: 'Flutter App',
+            icon: Icons.phone_android_rounded,
           ),
-          Positioned(
-            top: 12,
-            right: 13,
-            child: _PreviewBadge(
-              label: project.featured ? 'Featured' : 'Case Study',
-              icon: project.featured
-                  ? Icons.star_rounded
-                  : Icons.checklist_rounded,
-              color: project.featured ? AppColors.pink : AppColors.violet,
-            ),
+        ),
+        Positioned(
+          top: 12,
+          right: 13,
+          child: _PreviewBadge(
+            label: project.featured ? 'Featured' : 'Case Study',
+            icon: project.featured
+                ? Icons.star_rounded
+                : Icons.checklist_rounded,
+            color: project.featured ? AppColors.pink : AppColors.violet,
           ),
-        ],
-      );
+        ),
+      ],
+    );
+  }
 }
 
 class _PreviewBadge extends StatelessWidget {

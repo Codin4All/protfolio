@@ -128,12 +128,20 @@ class _ProjectCardState extends State<ProjectCard> {
                           ),
                         ),
                         if (project.githubUrl.isNotEmpty)
-                          IconButton(
-                            tooltip: 'Open GitHub repository',
-                            visualDensity: VisualDensity.compact,
+                          TextButton.icon(
                             onPressed: () => openLink(project.githubUrl),
-                            icon: const Icon(Icons.code_rounded, size: 18),
-                            color: AppColors.muted,
+                            style: TextButton.styleFrom(
+                              foregroundColor: AppColors.muted,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 5),
+                              visualDensity: VisualDensity.compact,
+                              textStyle: const TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            icon: const Icon(Icons.code_rounded, size: 14),
+                            label: const Text('GitHub'),
                           ),
                         if (project.liveUrl.isNotEmpty)
                           TextButton.icon(

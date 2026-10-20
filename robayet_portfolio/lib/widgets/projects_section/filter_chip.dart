@@ -25,6 +25,12 @@ class _ProjectFilterChip extends StatelessWidget {
         return Icons.local_fire_department_rounded;
       case 'Notifications':
         return Icons.notifications_active_rounded;
+      case 'Local Database':
+        return Icons.storage_rounded;
+      case 'Contact Management':
+        return Icons.contacts_rounded;
+      case 'Notes':
+        return Icons.sticky_note_2_rounded;
       default:
         return Icons.dashboard_rounded;
     }

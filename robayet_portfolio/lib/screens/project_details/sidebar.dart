@@ -101,6 +101,27 @@ class _ProjectSidebar extends StatelessWidget {
               icon: Icons.account_tree_outlined,
               child: _ProductCrudFlowList(),
             )
+          else if (project.detailsKind ==
+              ProjectDetailsKind.contactManagement)
+            const _DetailPanel(
+              title: 'Contact Workflow',
+              icon: Icons.account_tree_outlined,
+              child: _BulletList(items: [
+                'Create, view, edit, and delete contacts.',
+                'Search contacts by name and filter favorites.',
+                'Save contact changes in the local database.',
+              ]),
+            )
+          else if (project.detailsKind == ProjectDetailsKind.notes)
+            const _DetailPanel(
+              title: 'Notes Workflow',
+              icon: Icons.account_tree_outlined,
+              child: _BulletList(items: [
+                'Add, view, edit, and delete notes.',
+                'Search notes by title and open note details.',
+                'Retain saved notes after app restart.',
+              ]),
+            )
           else
             const _DetailPanel(
               title: 'Notification Flow',
@@ -109,18 +130,27 @@ class _ProjectSidebar extends StatelessWidget {
             ),
           const SizedBox(height: 16),
           _DetailPanel(
-            title: project.detailsKind == ProjectDetailsKind.taskManager
-                ? 'API Integration'
-                : project.detailsKind == ProjectDetailsKind.productCrud
-                    ? 'REST API Integration'
-                    : 'Assignment Focus',
+            title: switch (project.detailsKind) {
+              ProjectDetailsKind.taskManager => 'API Integration',
+              ProjectDetailsKind.productCrud => 'REST API Integration',
+              ProjectDetailsKind.contactManagement => 'Local Storage',
+              ProjectDetailsKind.notes => 'Local Storage',
+              ProjectDetailsKind.firebaseNotifications => 'Assignment Focus',
+            },
             icon: Icons.track_changes_rounded,
             child: Text(
-              project.detailsKind == ProjectDetailsKind.taskManager
-                  ? 'Connect sign-in, registration, profile, task list, status, create, and delete operations to the supplied API, with clear request feedback.'
-                  : project.detailsKind == ProjectDetailsKind.productCrud
-                      ? 'Load products with GET, create them with POST, update them with PUT, and remove them with DELETE. Refresh the product list after each successful change.'
-                      : 'Implement the full notification lifecycle: FCM in the background, local alerts in the foreground, and task routing when a notification is opened.',
+              switch (project.detailsKind) {
+                ProjectDetailsKind.taskManager =>
+                  'Connect sign-in, registration, profile, task list, status, create, and delete operations to the supplied API, with clear request feedback.',
+                ProjectDetailsKind.productCrud =>
+                  'Load products with GET, create them with POST, update them with PUT, and remove them with DELETE. Refresh the product list after each successful change.',
+                ProjectDetailsKind.contactManagement =>
+                  'Store each contact, including its favorite status, in the device database and keep the saved list current after create, edit, and delete actions.',
+                ProjectDetailsKind.notes =>
+                  'Save notes on the device and reload them after the app is reopened. Verify that edits, deletes, and title search keep the stored list in sync.',
+                ProjectDetailsKind.firebaseNotifications =>
+                  'Implement the full notification lifecycle: FCM in the background, local alerts in the foreground, and task routing when a notification is opened.',
+              },
               style: const TextStyle(
                   color: AppColors.muted, fontSize: 11, height: 1.6),
             ),

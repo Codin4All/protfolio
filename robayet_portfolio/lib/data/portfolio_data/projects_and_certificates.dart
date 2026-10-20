@@ -14,6 +14,9 @@ const projects = [
     ],
     categories: ['Mobile Apps', 'Firebase', 'Notifications'],
     featured: true,
+    image: 'assets/images/Gemini_Generated_Image_tvj3iptvj3iptvj3 (2).jpg',
+    imageAspectRatio: 1680 / 590,
+    githubUrl: 'https://github.com/Codin4All/assignment-_ostad_16',
   ),
   ProjectModel(
     name: 'Task Manager App',
@@ -28,6 +31,8 @@ const projects = [
       'Responsive UI',
     ],
     categories: ['Mobile Apps', 'API Integration', 'Task Management'],
+    image: 'assets/images/Gemini_Generated_Image_soyei7soyei7soye (1).jpg',
+    imageAspectRatio: 912 / 1216,
     githubUrl: 'https://github.com/Codin4All/assignment-_ostad_13__module-',
     detailsKind: ProjectDetailsKind.taskManager,
   ),
@@ -44,7 +49,57 @@ const projects = [
       'Form Validation',
     ],
     categories: ['Mobile Apps', 'API Integration', 'CRUD Operations'],
+    image: 'assets/images/Gemini_Generated_Image_a6a2zua6a2zua6a2 (3).jpg',
+    imageAspectRatio: 864 / 1231,
+    githubUrl: 'https://github.com/Codin4All/REST-API-CRUD-Operation-',
     detailsKind: ProjectDetailsKind.productCrud,
+  ),
+  ProjectModel(
+    name: 'Contact Management App',
+    description:
+        'A Flutter contact manager with local database storage, contact CRUD, name search, and favorite filtering.',
+    technologies: [
+      'Flutter',
+      'Dart',
+      'Local Database',
+      'CRUD Operations',
+      'Name Search',
+      'Favorites',
+    ],
+    categories: [
+      'Mobile Apps',
+      'Local Database',
+      'CRUD Operations',
+      'Contact Management',
+    ],
+    image: 'assets/images/Contact_Management_app.png',
+    imageAspectRatio: 1110 / 911,
+    githubUrl:
+        'https://github.com/Codin4All/Contact-Management-projectd-in-flutter-',
+    detailsKind: ProjectDetailsKind.contactManagement,
+  ),
+  ProjectModel(
+    name: 'Notes App',
+    description:
+        'A Flutter notes app with local persistence, note CRUD, title search, and a dedicated note details screen.',
+    technologies: [
+      'Flutter',
+      'Dart',
+      'Local Storage',
+      'CRUD Operations',
+      'Title Search',
+      'Navigation',
+    ],
+    categories: [
+      'Mobile Apps',
+      'Local Database',
+      'CRUD Operations',
+      'Notes',
+    ],
+    image: 'assets/images/Note_App.jpg',
+    imageAspectRatio: 864 / 1215,
+    githubUrl: 'https://github.com/Codin4All/livetest2_/tree/master/lib',
+    detailsKind: ProjectDetailsKind.notes,
   ),
 ];
 

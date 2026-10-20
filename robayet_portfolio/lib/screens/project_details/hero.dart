@@ -7,6 +7,33 @@ class _ProjectHero extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mobile = MediaQuery.sizeOf(context).width < 760;
+    final projectTypeBadge = project.featured
+        ? 'FEATURED PROJECT'
+        : switch (project.detailsKind) {
+            ProjectDetailsKind.productCrud => 'PRODUCT CRUD',
+            ProjectDetailsKind.contactManagement => 'CONTACT MANAGEMENT',
+            ProjectDetailsKind.notes => 'NOTES APP',
+            _ => 'TASK MANAGEMENT',
+          };
+    final projectFocusBadge = switch (project.detailsKind) {
+      ProjectDetailsKind.productCrud => 'REST API INTEGRATION',
+      ProjectDetailsKind.contactManagement => 'LOCAL DATABASE',
+      ProjectDetailsKind.notes => 'LOCAL STORAGE',
+      _ => 'ASSIGNMENT BRIEF',
+    };
+    final projectDescription = switch (project.detailsKind) {
+      ProjectDetailsKind.taskManager =>
+        'A mobile task manager assignment covering account access, profile management, task workflows, and API-backed CRUD.',
+      ProjectDetailsKind.productCrud =>
+        'A Flutter product inventory app with live REST API data, validated create and edit forms, automatic total pricing, and reliable delete and refresh flows.',
+      ProjectDetailsKind.contactManagement =>
+        'A Flutter contact manager backed by a local database, with contact CRUD, name search, and favorite filtering.',
+      ProjectDetailsKind.notes =>
+        'A Flutter notes app with persistent local storage, note creation and editing, title search, and a dedicated details screen.',
+      ProjectDetailsKind.firebaseNotifications =>
+        'A Flutter task manager assignment covering Firebase Authentication, Firestore task management, FCM push notifications, and local notifications.',
+    };
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -20,11 +47,7 @@ class _ProjectHero extends StatelessWidget {
               color: AppColors.accent,
             ),
             _MetaBadge(
-              label: project.featured
-                  ? 'FEATURED PROJECT'
-                  : project.detailsKind == ProjectDetailsKind.productCrud
-                      ? 'PRODUCT CRUD'
-                      : 'TASK MANAGEMENT',
+              label: projectTypeBadge,
               color: project.featured
                   ? const Color(0xFFC47BFF)
                   : AppColors.success,
@@ -33,9 +56,7 @@ class _ProjectHero extends StatelessWidget {
                   : Icons.checklist_rounded,
             ),
             _MetaBadge(
-              label: project.detailsKind == ProjectDetailsKind.productCrud
-                  ? 'REST API INTEGRATION'
-                  : 'ASSIGNMENT BRIEF',
+              label: projectFocusBadge,
               color: const Color(0xFFFFC563),
               icon: Icons.menu_book_rounded,
             ),
@@ -56,11 +77,7 @@ class _ProjectHero extends StatelessWidget {
         ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 900),
           child: Text(
-            project.detailsKind == ProjectDetailsKind.taskManager
-                ? 'A mobile task manager assignment covering account access, profile management, task workflows, and API-backed CRUD.'
-                : project.detailsKind == ProjectDetailsKind.productCrud
-                    ? 'A Flutter product inventory app with live REST API data, validated create and edit forms, automatic total pricing, and reliable delete and refresh flows.'
-                    : 'A Flutter task manager assignment covering Firebase Authentication, Firestore task management, FCM push notifications, and local notifications.',
+            projectDescription,
             style: TextStyle(
               color: AppColors.muted,
               fontSize: mobile ? 15 : 18,
@@ -70,11 +87,44 @@ class _ProjectHero extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 24),
-        if (project.detailsKind == ProjectDetailsKind.taskManager)
-          const _TaskManagerShowcase()
-        else if (project.detailsKind == ProjectDetailsKind.productCrud)
-          const _ProductCrudShowcase()
-        else
+        if (project.image.isNotEmpty) ...[
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final aspectRatio = project.imageAspectRatio ?? 1680 / 590;
+              final maxImageWidth = 640 * aspectRatio;
+              final imageWidth = constraints.maxWidth < maxImageWidth
+                  ? constraints.maxWidth
+                  : maxImageWidth;
+              final imageHeight = imageWidth / aspectRatio;
+
+              return Container(
+                width: constraints.maxWidth,
+                height: imageHeight,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(18),
+                  border: Border.all(
+                    color: AppColors.border.withValues(alpha: 0.84),
+                  ),
+                ),
+                child: Center(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(17),
+                    child: Image.asset(
+                      project.image,
+                      width: imageWidth,
+                      height: imageHeight,
+                      fit: BoxFit.contain,
+                      alignment: Alignment.center,
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+          const SizedBox(height: 24),
+        ],
+        if (project.detailsKind ==
+            ProjectDetailsKind.firebaseNotifications)
           const _NotificationFlowHero(),
       ],
     );
