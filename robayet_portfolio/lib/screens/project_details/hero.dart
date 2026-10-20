@@ -13,12 +13,20 @@ class _ProjectHero extends StatelessWidget {
             ProjectDetailsKind.productCrud => 'PRODUCT CRUD',
             ProjectDetailsKind.contactManagement => 'CONTACT MANAGEMENT',
             ProjectDetailsKind.notes => 'NOTES APP',
+            ProjectDetailsKind.flashcards => 'FLASHCARD QUIZ',
+            ProjectDetailsKind.providerCart => 'SHOPPING CART',
+            ProjectDetailsKind.languageLearning => 'LANGUAGE LEARNING',
+            ProjectDetailsKind.randomQuotes => 'QUOTE GENERATOR',
             _ => 'TASK MANAGEMENT',
           };
     final projectFocusBadge = switch (project.detailsKind) {
       ProjectDetailsKind.productCrud => 'REST API INTEGRATION',
       ProjectDetailsKind.contactManagement => 'LOCAL DATABASE',
       ProjectDetailsKind.notes => 'LOCAL STORAGE',
+      ProjectDetailsKind.flashcards => 'STUDY TOOLS',
+      ProjectDetailsKind.providerCart => 'PROVIDER STATE',
+      ProjectDetailsKind.languageLearning => 'DAILY LESSONS + QUIZZES',
+      ProjectDetailsKind.randomQuotes => 'DAILY INSPIRATION',
       _ => 'ASSIGNMENT BRIEF',
     };
     final projectDescription = switch (project.detailsKind) {
@@ -30,6 +38,14 @@ class _ProjectHero extends StatelessWidget {
         'A Flutter contact manager backed by a local database, with contact CRUD, name search, and favorite filtering.',
       ProjectDetailsKind.notes =>
         'A Flutter notes app with persistent local storage, note creation and editing, title search, and a dedicated details screen.',
+      ProjectDetailsKind.flashcards =>
+        'A Flutter flashcard quiz app for studying with question and answer cards, answer reveal, Previous and Next navigation, and customizable cards.',
+      ProjectDetailsKind.providerCart =>
+        'A Flutter shopping cart app that uses Provider and ChangeNotifier to manage local products, cart items, quantities, and totals.',
+      ProjectDetailsKind.languageLearning =>
+        'An interactive Flutter language learning app with daily lessons, vocabulary and grammar categories, translation and pronunciation practice, quizzes, and progress tracking.',
+      ProjectDetailsKind.randomQuotes =>
+        'A clean and minimal quote app that presents a randomly selected quote with its author when opened and whenever the user asks for another.',
       ProjectDetailsKind.firebaseNotifications =>
         'A Flutter task manager assignment covering Firebase Authentication, Firestore task management, FCM push notifications, and local notifications.',
     };
@@ -126,6 +142,12 @@ class _ProjectHero extends StatelessWidget {
         if (project.detailsKind ==
             ProjectDetailsKind.firebaseNotifications)
           const _NotificationFlowHero(),
+        if (project.detailsKind == ProjectDetailsKind.providerCart)
+          const _ProviderCartFlowHero(),
+        if (project.detailsKind == ProjectDetailsKind.languageLearning)
+          const _LanguageLearningFlowHero(),
+        if (project.detailsKind == ProjectDetailsKind.randomQuotes)
+          const _RandomQuoteFlowHero(),
       ],
     );
   }

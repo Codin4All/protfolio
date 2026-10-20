@@ -19,6 +19,14 @@ class _ProjectsSectionState extends State<ProjectsSection> {
     'Local Database',
     'Contact Management',
     'Notes',
+    'Flashcards',
+    'State Management',
+    'Provider',
+    'Shopping Cart',
+    'Language Learning',
+    'Education',
+    'Quizzes',
+    'Random Quotes',
   ];
 
   String _selectedFilter = _filters.first;
@@ -50,7 +58,7 @@ class _ProjectsSectionState extends State<ProjectsSection> {
       titleWidget: _ProjectsHeading(mobile: isMobile(context)),
       eyebrow: 'PORTFOLIO SHOWCASE',
       subtitle:
-          'Flutter mobile projects for task management, local database contacts and notes, Firebase notifications, and REST API workflows.',
+          'Flutter mobile projects for language learning, random quotes, task management, shopping cart state, flashcard study, local database contacts and notes, Firebase notifications, and REST API workflows.',
       child: Column(
         children: [
           Wrap(

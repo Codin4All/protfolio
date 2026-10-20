@@ -101,6 +101,84 @@ const projects = [
     githubUrl: 'https://github.com/Codin4All/livetest2_/tree/master/lib',
     detailsKind: ProjectDetailsKind.notes,
   ),
+  ProjectModel(
+    name: 'Flashcard Quiz App',
+    description:
+        'A Flutter study app with question and answer flashcards, Previous and Next navigation, and tools to add, edit, and delete cards.',
+    technologies: [
+      'Flutter',
+      'Dart',
+      'Flashcards',
+      'Quiz Navigation',
+      'Card Management',
+    ],
+    categories: ['Mobile Apps', 'Study Tools', 'Flashcards'],
+    image: 'assets/images/Gemini_Generated_Image_r0sd3jr0sd3jr0sd.jpg',
+    imageAspectRatio: 1706 / 624,
+    githubUrl: 'https://github.com/Codin4All/Flashcard-Quiz-App-',
+    detailsKind: ProjectDetailsKind.flashcards,
+  ),
+  ProjectModel(
+    name: 'Product Cart App using Provider',
+    description:
+        'A Flutter shopping cart assignment using Provider and ChangeNotifier for local product browsing, cart quantities, and automatic totals.',
+    technologies: [
+      'Flutter',
+      'Dart',
+      'Provider',
+      'ChangeNotifier',
+      'State Management',
+    ],
+    categories: [
+      'Mobile Apps',
+      'State Management',
+      'Provider',
+      'Shopping Cart',
+    ],
+    featured: true,
+    githubUrl: 'https://github.com/Codin4All/Provider-State-Management',
+    detailsKind: ProjectDetailsKind.providerCart,
+  ),
+  ProjectModel(
+    name: 'LinguaLearn - Bengali Language Learning App',
+    description:
+        'An interactive Flutter language learning app with daily lessons, vocabulary and grammar practice, translations, pronunciation, quizzes, and progress tracking.',
+    technologies: [
+      'Flutter',
+      'Dart',
+      'Language Learning',
+      'Daily Lessons',
+      'Quizzes',
+      'Firebase Sync',
+    ],
+    categories: [
+      'Mobile Apps',
+      'Language Learning',
+      'Education',
+      'Quizzes',
+      'Firebase',
+    ],
+    image: 'assets/images/the_interactive_bengalilernig.jpg',
+    imageAspectRatio: 723 / 1024,
+    githubUrl: 'https://github.com/Codin4All/Language-Learning-App-',
+    detailsKind: ProjectDetailsKind.languageLearning,
+  ),
+  ProjectModel(
+    name: 'Random Quote Generator',
+    description:
+        'A clean quote app that displays a random thought with its author on launch and whenever a new quote is requested.',
+    technologies: [
+      'Flutter',
+      'Dart',
+      'Random Quotes',
+      'Minimal UI',
+    ],
+    categories: ['Mobile Apps', 'Random Quotes', 'Quote Generator'],
+    image: 'assets/images/Random_Quote_Generator.jpg',
+    imageAspectRatio: 730 / 1024,
+    githubUrl: 'https://github.com/Codin4All/Random-Quote-Generator',
+    detailsKind: ProjectDetailsKind.randomQuotes,
+  ),
 ];
 
 /// Set category to 'Professional Certificates' or 'Awards & Conferences' to

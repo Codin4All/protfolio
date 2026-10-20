@@ -31,6 +31,22 @@ class _ProjectFilterChip extends StatelessWidget {
         return Icons.contacts_rounded;
       case 'Notes':
         return Icons.sticky_note_2_rounded;
+      case 'Flashcards':
+        return Icons.style_rounded;
+      case 'State Management':
+        return Icons.account_tree_rounded;
+      case 'Provider':
+        return Icons.sync_alt_rounded;
+      case 'Shopping Cart':
+        return Icons.shopping_cart_rounded;
+      case 'Language Learning':
+        return Icons.translate_rounded;
+      case 'Education':
+        return Icons.school_rounded;
+      case 'Quizzes':
+        return Icons.quiz_rounded;
+      case 'Random Quotes':
+        return Icons.format_quote_rounded;
       default:
         return Icons.dashboard_rounded;
     }

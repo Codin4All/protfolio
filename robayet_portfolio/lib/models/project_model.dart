@@ -4,6 +4,10 @@ enum ProjectDetailsKind {
   productCrud,
   contactManagement,
   notes,
+  flashcards,
+  providerCart,
+  languageLearning,
+  randomQuotes,
 }
 
 class ProjectModel {
